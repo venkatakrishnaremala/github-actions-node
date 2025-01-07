@@ -25,5 +25,3 @@ jobs:
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}      
-          dockerfile: C:\Users\venkatakrishna.remal\Desktop\github-actions-node\dockerfile
-          
