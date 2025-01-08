@@ -16,4 +16,11 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run test
-        run: npm test          
+        run: npm test
+      
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - name: Build Docker image
+        run: docker build -t venkatakrishnaremala/demo-app:latest .
+      - name: Push Docker image
+        run: docker push venkatakrishnaremala/demo-app:latest
