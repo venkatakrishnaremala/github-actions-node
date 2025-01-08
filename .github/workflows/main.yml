@@ -24,3 +24,16 @@ jobs:
         run: docker build -t venkatakrishnaremala/demo-app:latest .
       - name: Push Docker image
         run: docker push venkatakrishnaremala/demo-app:latest
+
+  deploy:
+    needs: build
+    runs-on: [aws-ec2]
+
+    steps:
+      - name: pull image from docker hub
+        run: docker pull venkatakrishnaremala/demo-app:latest
+      - name: Delete old container
+        run: docker rm -f demo-app-container
+      - name: Run docker container
+        run: docker run -d -p 3000:3000 --name demo-app-container venkatakrishnaremala/demo-app
+
